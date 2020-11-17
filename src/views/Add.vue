@@ -1,6 +1,16 @@
 <template>
   <div>
-    <a href="/" type="button" class="btn btn-secondary mb-3">Back</a>
+    <a href="/">
+      <button type="button" class="btn btn-secondary mb-3">Back</button>
+    </a>
+
+    <div class="form-group">
+      <label>Type</label>
+      <select class="form-control" v-model="type">
+        <option>Lua</option>
+        <option>Javascript</option>
+      </select>
+    </div>
 
     <div class="form-group">
       <label>Code name</label>
@@ -8,7 +18,7 @@
     </div>
 
     <div class="form-group">
-      <label>Auhtor</label>
+      <label>Share by</label>
       <input type="text" class="form-control" v-model="author" />
     </div>
 
@@ -17,7 +27,7 @@
       <textarea class="form-control" rows="5" id="content"></textarea>
     </div>
 
-    <button type="button" class="btn btn-primary" @click="add()">Add</button>
+    <button type="button" class="btn btn-primary" @click="add()">Share</button>
   </div>
 </template>
 
@@ -29,6 +39,7 @@ export default {
   data() {
     return {
       name: "",
+      type: "Lua",
       content: "",
       author: "",
       simplemde: "",
@@ -55,6 +66,7 @@ export default {
         method: "POST",
         data: {
           name: this.name,
+          type: this.type,
           content: this.simplemde.value(),
           author: this.author,
         },

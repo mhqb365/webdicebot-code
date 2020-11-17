@@ -5,7 +5,9 @@
       Consider and test before using
     </p>
 
-    <a href="/add" type="button" class="btn btn-primary mb-3">Share</a>
+    <a href="/add">
+      <button type="button" class="btn btn-primary mb-3">Share</button>
+    </a>
 
     <p>Total codes: {{ totalDocs }} | Total page: {{ totalPages }}</p>
 
@@ -34,23 +36,28 @@
     </ul>
 
     <div class="row">
-      <div class="col-sm-12 col-md-3" v-for="code in codes" :key="code.name">
+      <div
+        class="col-sm-12 col-md-3 mb-3"
+        v-for="code in codes"
+        :key="code.name"
+      >
         <div class="card p-2">
-          <b class="text-primary">{{ code.name }}</b>
+          <b>
+            <span class="badge badge-warning">{{ code.type }}</span>
+            <span class="text-primary">{{ code.name }}</span>
+            share by
+            <span class="text-primary">{{ code.author }}</span>
+          </b>
 
           <hr />
 
           <div class="form-group">
             <textarea
               class="form-control"
-              rows="5"
+              rows="6"
               v-model="code.content"
             ></textarea>
           </div>
-
-          <p>
-            By: <span class="text-primary">{{ code.author }}</span>
-          </p>
 
           <button
             type="button"
