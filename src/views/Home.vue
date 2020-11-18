@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      ☛ Code store is public and shared by anyone. There is no guarantee of
+      ☛ Code store is public for Web DiceBot user and shared by any user. There is no guarantee of
       safety. Consider and test before using
     </p>
 
