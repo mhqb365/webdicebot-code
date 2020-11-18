@@ -1,14 +1,22 @@
 <template>
   <div>
-    <a href="/">
+    <router-link to="/">
       <button type="button" class="btn btn-secondary mb-3">Back</button>
-    </a>
+    </router-link>
 
     <div class="form-group">
-      <label>Type</label>
+      <label>Language</label>
       <select class="form-control" v-model="type">
         <option>Lua</option>
         <option>Javascript</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Type</label>
+      <select class="form-control" v-model="typeUser">
+        <option>Normal</option>
+        <option>Vip</option>
       </select>
     </div>
 
@@ -40,6 +48,7 @@ export default {
     return {
       name: "",
       type: "Lua",
+      typeUser: "Normal",
       content: "",
       author: "",
       simplemde: "",
@@ -67,6 +76,7 @@ export default {
         data: {
           name: this.name,
           type: this.type,
+          typeUser: this.typeUser,
           content: this.simplemde.value(),
           author: this.author,
         },

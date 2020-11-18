@@ -1,16 +1,9 @@
 <template>
   <div>
-    <p>
-      ☛ Code store is public and shared by anyone. There is no guarantee of
-      safety. Consider and test before using
-    </p>
+    <p>☛ Dice is risk game. Consider and test all code before using</p>
 
-    <router-link to="/add">
-      <button type="button" class="btn btn-primary mb-3">Share</button>
-    </router-link>
-
-    <router-link to="/vip">
-      <button type="button" class="btn btn-warning mb-3">VIP store</button>
+    <router-link to="/">
+      <button type="button" class="btn btn-secondary mb-3">Back</button>
     </router-link>
 
     <p>Total codes: {{ totalDocs }} | Total pages: {{ totalPages }}</p>
@@ -85,6 +78,7 @@ import API_URL from "@/utils/apiUrl";
 export default {
   data() {
     return {
+      license: "",
       page: 1,
       codes: [],
       totalDocs: 0,
@@ -129,21 +123,26 @@ export default {
       axios({
         url:
           API_URL +
-          "/code?license=" +
+          "/code/vip?license=" +
           localStorage.getItem("license") +
           "&page=" +
           `${page ? page : this.page}` +
           "&limit=9",
         method: "GET",
-      }).then((response) => {
-        // console.log(response.data);
-        this.page = response.data.page;
-        this.codes = response.data.docs;
-        this.totalDocs = response.data.totalDocs;
-        this.totalPages = response.data.totalPages;
-        this.hasPrevPage = response.data.hasPrevPage;
-        this.hasNextPage = response.data.hasNextPage;
-      });
+      })
+        .then((response) => {
+          // console.log(response.data);
+          this.page = response.data.page;
+          this.codes = response.data.docs;
+          this.totalDocs = response.data.totalDocs;
+          this.totalPages = response.data.totalPages;
+          this.hasPrevPage = response.data.hasPrevPage;
+          this.hasNextPage = response.data.hasNextPage;
+        })
+        .catch((error) => {
+          this.notify("VIP only for 30 days license", false);
+          setTimeout(() => this.enterLicense(), 1e3);
+        });
     },
   },
 };
