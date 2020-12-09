@@ -3,7 +3,7 @@
     <p>☛ Dice is risk game. Consider and test all code before using</p>
 
     <router-link to="/">
-      <button type="button" class="btn btn-secondary mb-3">Back</button>
+      <button type="button" class="btn btn-secondary mb-3">Normal Store</button>
     </router-link>
 
     <p>Total codes: {{ totalDocs }} | Total pages: {{ totalPages }}</p>
@@ -108,7 +108,7 @@ export default {
     },
     enterLicense: function () {
       let license = prompt("Enter your license");
-      if (!license) return this.notify("Enter your license, please!", false);
+      if (!license) return this.notify("Enter your license", false);
 
       localStorage.setItem("license", license);
 

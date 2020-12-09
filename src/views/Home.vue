@@ -1,16 +1,12 @@
 <template>
   <div>
     <p>
-      ☛ Code store is public for Web DiceBot user and shared by any user. There is no guarantee of
-      safety. Consider and test before using
+      ☛ Code store is public for Web DiceBot user and shared by any user. There
+      is no guarantee of safety. Consider and test before using
     </p>
 
-    <router-link to="/add">
-      <button type="button" class="btn btn-primary mb-3">Share</button>
-    </router-link>
-
     <router-link to="/vip">
-      <button type="button" class="btn btn-warning mb-3">VIP store</button>
+      <button type="button" class="btn btn-warning mb-3">VIP Store</button>
     </router-link>
 
     <p>Total codes: {{ totalDocs }} | Total pages: {{ totalPages }}</p>
@@ -114,7 +110,7 @@ export default {
     },
     enterLicense: function () {
       let license = prompt("Enter your license");
-      if (!license) return this.notify("Enter your license, please!", false);
+      if (!license) return this.notify("Enter your license", false);
 
       localStorage.setItem("license", license);
 
