@@ -32,7 +32,9 @@
       </li>
     </ul>
 
-    <div class="row">
+    <div v-if="isLoading" class="spinner-border"></div>
+
+    <div v-else class="row">
       <div
         class="col-sm-12 col-md-3 mb-3"
         v-for="code in codes"
@@ -78,6 +80,7 @@ import API_URL from "@/utils/apiUrl";
 export default {
   data() {
     return {
+      isLoading: false,
       license: "",
       page: 1,
       codes: [],
@@ -120,6 +123,7 @@ export default {
       this.fetch();
     },
     fetch: function (page) {
+      this.isLoading = true;
       axios({
         url:
           API_URL +
@@ -132,6 +136,7 @@ export default {
       })
         .then((response) => {
           // console.log(response.data);
+          this.isLoading = false;
           this.page = response.data.page;
           this.codes = response.data.docs;
           this.totalDocs = response.data.totalDocs;
